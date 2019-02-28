@@ -9,6 +9,7 @@ struct BST
 struct BST* GetNode(int );
 struct BST* Push(int,struct BST * );
 int isCheckBST(struct BST * ,int ,int );
+int height(struct BST*);
 int main()
 {
     
@@ -48,4 +49,13 @@ int isCheckBST(struct BST * run,int min,int max)
         return ((isCheckBST(run->left,min,value))&&(isCheckBST(run->right,value,max)));
     else
         return 0;
+}
+// find the maximum height of BST.
+int height(struct BST* run)
+{
+    if(run==NULL)
+      return -1;
+    int leftheight=1+height(run->left);
+    int rightheight=1+height(run->right);
+    return ((leftheight>rightheight?leftheight:rightheight));
 }
