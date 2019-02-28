@@ -10,6 +10,7 @@ struct BST* GetNode(int );
 struct BST* Push(int,struct BST * );
 int isCheckBST(struct BST * ,int ,int );
 int height(struct BST*);
+int searchKey(struct BST * ,int)
 int main()
 {
     
@@ -58,4 +59,14 @@ int height(struct BST* run)
     int leftheight=1+height(run->left);
     int rightheight=1+height(run->right);
     return ((leftheight>rightheight?leftheight:rightheight));
+}
+// search the key in binary tree. return 0 if key is not present else return 1;
+int searchKey(struct BST * run,int key)
+{
+    if(run==NULL)
+      return 0;
+    if(run->data==key)
+      return 1;
+    else
+      return ((run->data>key)?searchKey(run->left,key):searchKey(run->right,key));
 }
